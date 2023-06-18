@@ -1,17 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
-
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
-import { Dimensions, Pressable, StyleSheet, View, Text } from 'react-native';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import { StyleSheet, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { AllCars } from './assets/components/AllCars';
-import { Upravlenie } from './assets/components/ChangeCar';
+import { AllCars } from './components/AllCars';
+import { Upravlenie } from './components/ChangeCar';
 
 export default function App() {
   const [vodila, setVodila] = useState<any>({
     "position": {
       "latitude": 59.95,
       "longitude": 30.28,
-      "latitudeDelta": 0.9,
+      "latitudeDelta": 0.7,
       "longitudeDelta": 1
     },
     "category": 1,
@@ -19,15 +17,15 @@ export default function App() {
     "number": "+79876543220"
   })
 
-  const [INITIAL_POSITION, SET_INITIAL_POSITION] = useState({
+  const [iniPosition, setIniPosition] = useState({
     "latitude": 59.95,
     "longitude": 30.28,
-    "latitudeDelta": 0.9,
+    "latitudeDelta": 0.7,
     "longitudeDelta": 1
   });
 
   useEffect(() => {
-    SET_INITIAL_POSITION(vodila.position)
+    setIniPosition(vodila.position)
   })
 
   const handleChangeVodila = (value: any) => {
@@ -39,7 +37,7 @@ export default function App() {
       <MapView
         style={styles.map}
         provider={PROVIDER_GOOGLE}
-        initialRegion={INITIAL_POSITION}
+        initialRegion={iniPosition}
         region={vodila.position}
       >
         <AllCars onChange={handleChangeVodila} />

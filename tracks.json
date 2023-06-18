@@ -111,24 +111,24 @@
   },
   {
     "position": {
-      "latitude": 60.01,
-      "longitude": 30.2,
-      "latitudeDelta": 0.0922,
-      "longitudeDelta": 0.0421
-    },
-    "category": 3,
-    "name": "Леонид",
-    "number": "+79876543219"
-  },
-  {
-    "position": {
-      "latitude": 60.03,
-      "longitude": 30.37,
+      "latitude": 60.07,
+      "longitude": 30.21,
       "latitudeDelta": 0.0922,
       "longitudeDelta": 0.0421
     },
     "category": 1,
-    "name": "Андрей",
-    "number": "+79876543220"
+    "name": "Юрий",
+    "number": "+79876543239"
+  },
+  {
+    "position": {
+      "latitude": 59.94,
+      "longitude": 30.39,
+      "latitudeDelta": 0.0922,
+      "longitudeDelta": 0.0421
+    },
+    "category": 2,
+    "name": "Тимофей",
+    "number": "+79876543223"
   }
 ]

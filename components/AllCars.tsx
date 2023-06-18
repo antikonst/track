@@ -1,11 +1,11 @@
 import { Marker } from 'react-native-maps';
-import Track from '../../tracks.json';
+import Track from '../tracks.json';
 import { useEffect, useState } from 'react';
 
 const cat: any = {
-  1: require("../../assets/gruz.png"),
-  2: require("../../assets/pass.png"),
-  3: require("../../assets/spec.png")
+  1: require("../assets/gruz.png"),
+  2: require("../assets/pass.png"),
+  3: require("../assets/spec.png")
 }
 
 interface Props {
