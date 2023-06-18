@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { AllCars } from './components/AllCars';
 import { Upravlenie } from './components/ChangeCar';
+import { ChangeLang } from './components/Switch';
 
 export default function App() {
   const [vodila, setVodila] = useState<any>({
@@ -43,6 +44,7 @@ export default function App() {
         <AllCars onChange={handleChangeVodila} />
       </MapView>
       <Upravlenie onChange={handleChangeVodila} vodilaChange={vodila} />
+      <ChangeLang />
     </View>
   );
 }
