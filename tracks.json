@@ -1,0 +1,134 @@
+[
+  {
+    "position": {
+      "latitude": 60,
+      "longitude": 30,
+      "latitudeDelta": 0.0922,
+      "longitudeDelta": 0.0421
+    },
+    "category": 1,
+    "name": "Василий",
+    "number": "+79876543211"
+  },
+  {
+    "position": {
+      "latitude": 59.9,
+      "longitude": 30.25,
+      "latitudeDelta": 0.0922,
+      "longitudeDelta": 0.0421
+    },
+    "category": 2,
+    "name": "Иван",
+    "number": "+79876543212"
+  },
+  {
+    "position": {
+      "latitude": 59.8,
+      "longitude": 30.2,
+      "latitudeDelta": 0.0922,
+      "longitudeDelta": 0.0421
+    },
+    "category": 3,
+    "name": "Сергей",
+    "number": "+79876543213"
+  },
+  {
+    "position": {
+      "latitude": 59.95,
+      "longitude": 30.28,
+      "latitudeDelta": 0.0922,
+      "longitudeDelta": 0.0421
+    },
+    "category": 1,
+    "name": "Илья",
+    "number": "+79876543214"
+  },
+  {
+    "position": {
+      "latitude": 59.98,
+      "longitude": 30.47,
+      "latitudeDelta": 0.0922,
+      "longitudeDelta": 0.0421
+    },
+    "category": 2,
+    "name": "Роман",
+    "number": "+79876543215"
+  },
+  {
+    "position": {
+      "latitude": 59.93,
+      "longitude": 30.5,
+      "latitudeDelta": 0.0922,
+      "longitudeDelta": 0.0421
+    },
+    "category": 3,
+    "name": "Алексей",
+    "number": "+79876543216"
+  },
+  {
+    "position": {
+      "latitude": 59.85,
+      "longitude": 30.4,
+      "latitudeDelta": 0.0922,
+      "longitudeDelta": 0.0421
+    },
+    "category": 1,
+    "name": "Александр",
+    "number": "+79876543217"
+  },
+  {
+    "position": {
+      "latitude": 60.05,
+      "longitude": 30.26,
+      "latitudeDelta": 0.0922,
+      "longitudeDelta": 0.0421
+    },
+    "category": 2,
+    "name": "Николай",
+    "number": "+79876543218"
+  },
+  {
+    "position": {
+      "latitude": 60.01,
+      "longitude": 30.2,
+      "latitudeDelta": 0.0922,
+      "longitudeDelta": 0.0421
+    },
+    "category": 3,
+    "name": "Леонид",
+    "number": "+79876543219"
+  },
+  {
+    "position": {
+      "latitude": 60.03,
+      "longitude": 30.37,
+      "latitudeDelta": 0.0922,
+      "longitudeDelta": 0.0421
+    },
+    "category": 1,
+    "name": "Андрей",
+    "number": "+79876543220"
+  },
+  {
+    "position": {
+      "latitude": 60.01,
+      "longitude": 30.2,
+      "latitudeDelta": 0.0922,
+      "longitudeDelta": 0.0421
+    },
+    "category": 3,
+    "name": "Леонид",
+    "number": "+79876543219"
+  },
+  {
+    "position": {
+      "latitude": 60.03,
+      "longitude": 30.37,
+      "latitudeDelta": 0.0922,
+      "longitudeDelta": 0.0421
+    },
+    "category": 1,
+    "name": "Андрей",
+    "number": "+79876543220"
+  }
+]
