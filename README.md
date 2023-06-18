@@ -8,13 +8,26 @@
 
 ![alt text](https://github.com/antikonst/track/blob/master/photo_2023-06-18_15-39-32.jpg?raw=true)
 
-![alt text](https://github.com/antikonst/track/blob/master/photo_2023-06-18_15-39-28.jpg?raw=true)
+---
+
+![alt text](https://github.com/antikonst/track/blob/master/photo_2023-06-18_15-39-28.jpg?raw=true) 
+
+---
+
 На странице "Список авто" есть возможность выбрать категорию транспорта.
+
+---
 
 ![alt text](https://github.com/antikonst/track/blob/master/photo_2023-06-18_15-39-19.jpg?raw=true)
 
+---
+
 При переходе к интересующему Вас авто, Вы видите его расположение на карте и информацию о водителе с возможностью отправки сообщения с предустановленным текстом или телефонного вызова.
 
+---
+
 ![alt text](https://github.com/antikonst/track/blob/master/photo_2023-06-18_15-38-49.jpg?raw=true)
+
+---
 
 Всем спасибо!
