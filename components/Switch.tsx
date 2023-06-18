@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { View, Switch, StyleSheet, Text } from 'react-native';
 
-export const ChangeLang = () => {
+interface Props {
+  onChange: (bool: boolean) => void
+}
+
+export const ChangeLang: React.FC<Props> = ({ onChange }) => {
   const [isEnabled, setIsEnabled] = useState(true);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
@@ -12,7 +16,7 @@ export const ChangeLang = () => {
         trackColor={{ false: '#e827a1', true: '#005de0' }}
         thumbColor={isEnabled ? '#9acd32' : '#cf5b25'}
         ios_backgroundColor="#3e3e3e"
-        onValueChange={toggleSwitch}
+        onValueChange={() => { toggleSwitch(); onChange(!isEnabled) }}
         value={isEnabled}
       />
       <Text style={{ marginTop: 14 }}>RU</Text>

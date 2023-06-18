@@ -8,7 +8,8 @@
     },
     "category": 1,
     "name": "Василий",
-    "number": "+79876543211"
+    "number": "+79876543211",
+    "ename": "Vasily"
   },
   {
     "position": {
@@ -19,7 +20,8 @@
     },
     "category": 2,
     "name": "Иван",
-    "number": "+79876543212"
+    "number": "+79876543212",
+    "ename": "Ivan"
   },
   {
     "position": {
@@ -30,7 +32,8 @@
     },
     "category": 3,
     "name": "Сергей",
-    "number": "+79876543213"
+    "number": "+79876543213",
+    "ename": "Sergey"
   },
   {
     "position": {
@@ -41,7 +44,8 @@
     },
     "category": 1,
     "name": "Илья",
-    "number": "+79876543214"
+    "number": "+79876543214",
+    "ename": "Iliya"
   },
   {
     "position": {
@@ -52,7 +56,8 @@
     },
     "category": 2,
     "name": "Роман",
-    "number": "+79876543215"
+    "number": "+79876543215",
+    "ename": "Roman"
   },
   {
     "position": {
@@ -63,7 +68,8 @@
     },
     "category": 3,
     "name": "Алексей",
-    "number": "+79876543216"
+    "number": "+79876543216",
+    "ename": "Aleksey"
   },
   {
     "position": {
@@ -74,7 +80,8 @@
     },
     "category": 1,
     "name": "Александр",
-    "number": "+79876543217"
+    "number": "+79876543217",
+    "ename": "Aleksandr"
   },
   {
     "position": {
@@ -85,7 +92,8 @@
     },
     "category": 2,
     "name": "Николай",
-    "number": "+79876543218"
+    "number": "+79876543218",
+    "ename": "Nikolay"
   },
   {
     "position": {
@@ -96,7 +104,8 @@
     },
     "category": 3,
     "name": "Леонид",
-    "number": "+79876543219"
+    "number": "+79876543219",
+    "ename": "Leonid"
   },
   {
     "position": {
@@ -107,7 +116,8 @@
     },
     "category": 1,
     "name": "Андрей",
-    "number": "+79876543220"
+    "number": "+79876543220",
+    "ename": "Andrey"
   },
   {
     "position": {
@@ -118,7 +128,8 @@
     },
     "category": 1,
     "name": "Юрий",
-    "number": "+79876543239"
+    "number": "+79876543239",
+    "ename": "Yuri"
   },
   {
     "position": {
@@ -129,6 +140,7 @@
     },
     "category": 2,
     "name": "Тимофей",
-    "number": "+79876543223"
+    "number": "+79876543223",
+    "ename": "Timofey"
   }
 ]

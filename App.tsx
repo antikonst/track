@@ -25,12 +25,18 @@ export default function App() {
     "longitudeDelta": 1
   });
 
+  const [lang, setLang] = useState(true)
+
   useEffect(() => {
     setIniPosition(vodila.position)
   })
 
   const handleChangeVodila = (value: any) => {
     setVodila(value)
+  }
+
+  const switchLang = (value: any) => {
+    setLang(value)
   }
 
   return (
@@ -41,10 +47,10 @@ export default function App() {
         initialRegion={iniPosition}
         region={vodila.position}
       >
-        <AllCars onChange={handleChangeVodila} />
+        <AllCars onChange={handleChangeVodila} lang={lang} />
       </MapView>
-      <Upravlenie onChange={handleChangeVodila} vodilaChange={vodila} />
-      <ChangeLang />
+      <Upravlenie onChange={handleChangeVodila} vodilaChange={vodila} lang={lang} />
+      <ChangeLang onChange={switchLang} />
     </View>
   );
 }

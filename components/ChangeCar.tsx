@@ -7,6 +7,7 @@ import * as Linking from 'expo-linking';
 interface Props {
   onChange: (obj: any) => void
   vodilaChange: any
+  lang: boolean
 }
 
 const cat: any = {
@@ -17,7 +18,7 @@ const cat: any = {
 
 const { width, height } = Dimensions.get("window");
 
-export const Upravlenie: React.FC<Props> = ({ onChange, vodilaChange }) => {
+export const Upravlenie: React.FC<Props> = ({ onChange, vodilaChange, lang }) => {
   const [modalVisible, setModalVisible] = useState(false)
   const [vodila, setVodila] = useState(vodilaChange)
   const waPress = useCallback(async (num: string, name: string) => {
@@ -58,10 +59,10 @@ export const Upravlenie: React.FC<Props> = ({ onChange, vodilaChange }) => {
               key={index}
               style={{ flexDirection: 'row' }}
               onPress={() => { setModalVisible(false); setVodila(item) }}>
-              <Text style={styles.wt}>{item.name}</Text>
+              <Text style={styles.wt}>{lang ? item.name : item.ename}</Text>
               <Image source={cat[item.category]} style={styles.img} contentFit="cover" />
             </Pressable>
-            <Pressable onPress={() => waPress(item.number, item.name)} >
+            <Pressable onPress={() => waPress(item.number, lang ? item.name : item.ename)} >
               <Image source={require('../assets/wa.png')} style={styles.img} contentFit="cover" />
             </Pressable>
             <Pressable onPress={() => tel(item.number)} >
@@ -72,7 +73,7 @@ export const Upravlenie: React.FC<Props> = ({ onChange, vodilaChange }) => {
     }
     ))
 
-  }, [numCat])
+  }, [numCat, lang])
 
   useEffect(() => {
     setNumCat([vid1 ? 1 : 0, vid2 ? 2 : 0, vid3 ? 3 : 0])
@@ -90,7 +91,7 @@ export const Upravlenie: React.FC<Props> = ({ onChange, vodilaChange }) => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={{ marginBottom: 15 }}>фильтр</Text>
+            <Text style={{ marginBottom: 15 }}>{lang ? "Фильтр" : "Filter"}</Text>
             <View style={{ flex: 1, flexDirection: 'row', width: width * 0.6, justifyContent: 'space-between' }}>
               <Pressable style={[{ padding: 7, borderRadius: 50 }, vid1 && { backgroundColor: 'white' }]} onPress={filterChange1}><Image source={require('../assets/gruz.png')} style={styles.imgF} contentFit="cover" /></Pressable>
               <Pressable style={[{ padding: 7, borderRadius: 50 }, vid2 && { backgroundColor: 'white' }]} onPress={filterChange2}><Image source={require('../assets/pass.png')} style={styles.imgF} contentFit="cover" /></Pressable>
@@ -104,7 +105,7 @@ export const Upravlenie: React.FC<Props> = ({ onChange, vodilaChange }) => {
         style={[styles.whiteUpravlenie, styles.firstBtn]}
         onPress={() => setModalVisible(!modalVisible)}
       >
-        <Text style={styles.wt}>Список авто</Text>
+        <Text style={styles.wt}>{lang ? "Список авто" : "List of cars"}</Text>
       </Pressable>
       {vodilaChange.name ? <View style={[styles.whiteUpravlenie, styles.nameBtn, styles.vnutriKnopki]}>
         <Pressable
@@ -112,7 +113,7 @@ export const Upravlenie: React.FC<Props> = ({ onChange, vodilaChange }) => {
           onPress={() => { setModalVisible(!modalVisible) }}
         >
           <View>
-            <Text style={styles.wt}>{vodilaChange.name}</Text>
+            <Text style={styles.wt}>{lang ? vodilaChange.name : vodilaChange.ename}</Text>
             <Text style={styles.wt}>{vodilaChange.number}</Text>
           </View>
 
