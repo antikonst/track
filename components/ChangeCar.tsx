@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { Modal, StyleSheet, Text, Pressable, View, ScrollView, Dimensions } from "react-native"
 import spisok from '../tracks.json'
 import { Image } from 'expo-image';
@@ -8,6 +8,7 @@ interface Props {
   onChange: (obj: any) => void
   vodilaChange: any
   lang: boolean
+  onNumCat: (arr: number[]) => void
 }
 
 const cat: any = {
@@ -18,7 +19,7 @@ const cat: any = {
 
 const { width, height } = Dimensions.get("window");
 
-export const Upravlenie: React.FC<Props> = ({ onChange, vodilaChange, lang }) => {
+export const Upravlenie: React.FC<Props> = ({ onChange, vodilaChange, lang, onNumCat }) => {
   const [modalVisible, setModalVisible] = useState(false)
   const [vodila, setVodila] = useState(vodilaChange)
   const waPress = useCallback(async (num: string, name: string) => {
@@ -32,6 +33,7 @@ export const Upravlenie: React.FC<Props> = ({ onChange, vodilaChange, lang }) =>
   const [vid1, setVid1] = useState(true)
   const [vid2, setVid2] = useState(true)
   const [vid3, setVid3] = useState(true)
+
   const filterChange1 = () => {
     setVid1(!vid1)
   }
@@ -79,6 +81,10 @@ export const Upravlenie: React.FC<Props> = ({ onChange, vodilaChange, lang }) =>
     setNumCat([vid1 ? 1 : 0, vid2 ? 2 : 0, vid3 ? 3 : 0])
   }, [vid1, vid2, vid3])
 
+  useEffect(() => {
+    onNumCat(numCat)
+  }, [numCat])
+
   return (
     <View style={styles.centeredView}>
       <Modal
@@ -91,7 +97,15 @@ export const Upravlenie: React.FC<Props> = ({ onChange, vodilaChange, lang }) =>
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={{ marginBottom: 15 }}>{lang ? "Фильтр" : "Filter"}</Text>
+            <View style={{ flex: 1, flexDirection: 'row' }}>
+              <Text style={{ marginBottom: 15, marginEnd: 10, paddingTop: 7 }}>{lang ? "Фильтр" : "Filter"}</Text>
+              <Pressable
+                style={{ backgroundColor: 'white', padding: 7, borderRadius: 50, marginBottom: 10 }}
+                onPress={() => setModalVisible(false)}
+              >
+                <Text>{lang ? "Применить" : "Apply"}</Text>
+              </Pressable>
+            </View>
             <View style={{ flex: 1, flexDirection: 'row', width: width * 0.6, justifyContent: 'space-between' }}>
               <Pressable style={[{ padding: 7, borderRadius: 50 }, vid1 && { backgroundColor: 'white' }]} onPress={filterChange1}><Image source={require('../assets/gruz.png')} style={styles.imgF} contentFit="cover" /></Pressable>
               <Pressable style={[{ padding: 7, borderRadius: 50 }, vid2 && { backgroundColor: 'white' }]} onPress={filterChange2}><Image source={require('../assets/pass.png')} style={styles.imgF} contentFit="cover" /></Pressable>
@@ -107,7 +121,7 @@ export const Upravlenie: React.FC<Props> = ({ onChange, vodilaChange, lang }) =>
       >
         <Text style={styles.wt}>{lang ? "Список авто" : "List of cars"}</Text>
       </Pressable>
-      {vodilaChange.name ? <View style={[styles.whiteUpravlenie, styles.nameBtn, styles.vnutriKnopki]}>
+      {(vodilaChange.name || numCat.find(i => vodilaChange.category === i)) ? <View style={[styles.whiteUpravlenie, styles.nameBtn, styles.vnutriKnopki]}>
         <Pressable
           style={{ flexDirection: 'row' }}
           onPress={() => { setModalVisible(!modalVisible) }}

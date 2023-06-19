@@ -11,9 +11,10 @@ const cat: any = {
 interface Props {
   onChange: (obj: any) => void
   lang: boolean
+  numCat: number[]
 }
 
-export const AllCars: React.FC<Props> = ({ onChange, lang }) => {
+export const AllCars: React.FC<Props> = ({ onChange, lang, numCat }) => {
   const [allTracks, setAllTracks] = useState<any>(<></>)
   const [vodila, setVodila] = useState({})
 
@@ -22,16 +23,20 @@ export const AllCars: React.FC<Props> = ({ onChange, lang }) => {
   }, [vodila])
 
   useEffect(() => {
-    setAllTracks(Track.map((item, index) => (
-      <Marker
-        key={index}
-        coordinate={item.position}
-        title={lang ? item.name : item.ename}
-        description={item.number}
-        image={cat[item.category]}
-        onPress={() => setVodila(item)}
-      />)))
-  }, [lang])
+    setAllTracks(Track.map((item, index) => {
+      if (numCat.find(i => item.category === i)) {
+        return (
+          <Marker
+            key={index}
+            coordinate={item.position}
+            title={lang ? item.name : item.ename}
+            description={item.number}
+            image={cat[item.category]}
+            onPress={() => setVodila(item)}
+          />)
+      }
+    }))
+  }, [lang, numCat])
 
   return <>{allTracks}</>
 }
