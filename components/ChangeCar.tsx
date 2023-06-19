@@ -4,13 +4,16 @@ import spisok from '../tracks.json'
 import { Image } from 'expo-image';
 import * as Linking from 'expo-linking';
 
+//данные для обмена с App.tsx
 interface Props {
   onChange: (obj: any) => void
   vodilaChange: any
   lang: boolean
   onNumCat: (arr: number[]) => void
+  onIniPosition: (obj: boolean) => void
 }
 
+//картинки для категорий
 const cat: any = {
   1: require("../assets/gruz.png"),
   2: require("../assets/pass.png"),
@@ -19,39 +22,34 @@ const cat: any = {
 
 const { width, height } = Dimensions.get("window");
 
-export const Upravlenie: React.FC<Props> = ({ onChange, vodilaChange, lang, onNumCat }) => {
-  const [modalVisible, setModalVisible] = useState(false)
-  const [vodila, setVodila] = useState(vodilaChange)
+export const Upravlenie: React.FC<Props> = ({ onChange, vodilaChange, lang, onNumCat, onIniPosition }) => {
+  const [modalVisible, setModalVisible] = useState(false) //видимость экрана со списком
+  const [vodila, setVodila] = useState(vodilaChange) //выбранное ТС
+  //отправка WA водителю
   const waPress = useCallback(async (num: string, name: string) => {
     await Linking.openURL(`whatsapp://send?text=“Добрый день, ${name}, подскажите, пожалуйста, какой номер заказа у вас сейчас в работе?”&phone=${num}`)
   }, []);
-
+  //звонок на номер водителя
   const tel = useCallback(async (tel: string) => {
     await Linking.openURL(`tel:${tel}`)
   }, []);
-
+  //состояние фильтра категорий
   const [vid1, setVid1] = useState(true)
   const [vid2, setVid2] = useState(true)
   const [vid3, setVid3] = useState(true)
-
-  const filterChange1 = () => {
-    setVid1(!vid1)
-  }
-  const filterChange2 = () => {
-    setVid2(!vid2)
-  }
-  const filterChange3 = () => {
-    setVid3(!vid3)
-  }
-
+  //переключение фильтра категорий
+  const filterChange1 = () => setVid1(!vid1)
+  const filterChange2 = () => setVid2(!vid2)
+  const filterChange3 = () => setVid3(!vid3)
+  //обновление выбранного ТС
   useEffect(() => {
     onChange(vodila)
   }, [vodila])
-
+  //выбранные категории ТС
   const [numCat, setNumCat] = useState([1, 2, 3])
-
+  //элементы списка
   const [elems, setElems] = useState<any>()
-
+  //установка и обновление элементов списка ТС в зависимости от выбранных категорий и языка
   useEffect(() => {
     setElems(spisok.map((item: any, index: any) => {
       if (numCat.find(i => item.category === i)) {
@@ -60,7 +58,7 @@ export const Upravlenie: React.FC<Props> = ({ onChange, vodilaChange, lang, onNu
             <Pressable
               key={index}
               style={{ flexDirection: 'row' }}
-              onPress={() => { setModalVisible(false); setVodila(item) }}>
+              onPress={() => { setModalVisible(false); setVodila(item); onIniPosition(true) }}>
               <Text style={styles.wt}>{lang ? item.name : item.ename}</Text>
               <Image source={cat[item.category]} style={styles.img} contentFit="cover" />
             </Pressable>
@@ -74,17 +72,39 @@ export const Upravlenie: React.FC<Props> = ({ onChange, vodilaChange, lang, onNu
       }
     }
     ))
-
   }, [numCat, lang])
-
+  //обновление массива категорий при смене фильтра
   useEffect(() => {
     setNumCat([vid1 ? 1 : 0, vid2 ? 2 : 0, vid3 ? 3 : 0])
   }, [vid1, vid2, vid3])
-
+  //передача обновленного массива категорий в App.tsx
   useEffect(() => {
     onNumCat(numCat)
   }, [numCat])
+  //установка таблички с данными водителя ТС
+  const [tablo, setTablo] = useState(<></>)
+  //обновление таблички
+  useEffect(() => {
+    setTablo(
+      <View style={[styles.whiteUpravlenie, styles.nameBtn, styles.vnutriKnopki, (vodilaChange.name && numCat.find(i => vodilaChange.category === i)) ? { display: "flex" } : { display: "none" }]}>
+        <Pressable style={{ flexDirection: 'row' }} onPress={() => { setModalVisible(!modalVisible); onIniPosition(vodilaChange.position) }}>
+          <View>
+            <Text style={styles.wt}>{lang ? vodilaChange.name : vodilaChange.ename}</Text>
+            <Text style={styles.wt}>{vodilaChange.number}</Text>
+          </View>
+          <Image source={cat[vodilaChange.category]} style={styles.imgBase} contentFit="cover" />
+        </Pressable>
+        <Pressable onPress={() => waPress(vodilaChange.number, vodilaChange.name)}>
+          <Image source={require('../assets/wa.png')} style={styles.imgBase} contentFit="cover" />
+        </Pressable>
+        <Pressable onPress={() => tel(vodilaChange.number)}>
+          <Image source={require('../assets/tel.png')} style={styles.tel} contentFit="cover" />
+        </Pressable>
+      </View >
+    )
+  }, [numCat, vodila, vodilaChange])
 
+  //возвращаемая видимая часть
   return (
     <View style={styles.centeredView}>
       <Modal
@@ -101,7 +121,10 @@ export const Upravlenie: React.FC<Props> = ({ onChange, vodilaChange, lang, onNu
               <Text style={{ marginBottom: 15, marginEnd: 10, paddingTop: 7 }}>{lang ? "Фильтр" : "Filter"}</Text>
               <Pressable
                 style={{ backgroundColor: 'white', padding: 7, borderRadius: 50, marginBottom: 10 }}
-                onPress={() => setModalVisible(false)}
+                onPress={() => {
+                  setModalVisible(false);
+                  onIniPosition(false)
+                }}
               >
                 <Text>{lang ? "Применить" : "Apply"}</Text>
               </Pressable>
@@ -121,29 +144,7 @@ export const Upravlenie: React.FC<Props> = ({ onChange, vodilaChange, lang, onNu
       >
         <Text style={styles.wt}>{lang ? "Список авто" : "List of cars"}</Text>
       </Pressable>
-      {(vodilaChange.name || numCat.find(i => vodilaChange.category === i)) ? <View style={[styles.whiteUpravlenie, styles.nameBtn, styles.vnutriKnopki]}>
-        <Pressable
-          style={{ flexDirection: 'row' }}
-          onPress={() => { setModalVisible(!modalVisible) }}
-        >
-          <View>
-            <Text style={styles.wt}>{lang ? vodilaChange.name : vodilaChange.ename}</Text>
-            <Text style={styles.wt}>{vodilaChange.number}</Text>
-          </View>
-
-          <Image source={cat[vodilaChange.category]} style={styles.imgBase} contentFit="cover" />
-        </Pressable>
-        <Pressable
-          onPress={() => waPress(vodilaChange.number, vodilaChange.name)}
-        >
-          <Image source={require('../assets/wa.png')} style={styles.imgBase} contentFit="cover" />
-        </Pressable>
-        <Pressable
-          onPress={() => tel(vodilaChange.number)}
-        >
-          <Image source={require('../assets/tel.png')} style={styles.tel} contentFit="cover" />
-        </Pressable>
-      </View > : <></>}
+      {tablo}
     </View>
   );
 };

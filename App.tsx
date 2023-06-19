@@ -6,31 +6,19 @@ import { Upravlenie } from './components/ChangeCar';
 import { ChangeLang } from './components/Switch';
 
 export default function App() {
-  const [vodila, setVodila] = useState<any>({
-    "position": {
-      "latitude": 59.95,
-      "longitude": 30.28,
-      "latitudeDelta": 0.7,
-      "longitudeDelta": 1
-    },
-    "category": 1,
-    "name": "Андрей",
-    "number": "+79876543220"
-  })
+  const [vodila, setVodila] = useState<any>({})
 
-  const [iniPosition, setIniPosition] = useState({
+  const iniPosition = {
     "latitude": 59.95,
     "longitude": 30.28,
     "latitudeDelta": 0.7,
     "longitudeDelta": 1
-  });
+  }
+
+  const [booleanPosition, setBooleanPosition] = useState(false)
 
   const [lang, setLang] = useState(true)
   const [numCat, setNumCat] = useState([1, 2, 3])
-
-  useEffect(() => {
-    setIniPosition(vodila.position)
-  })
 
   const handleChangeVodila = (value: any) => {
     setVodila(value)
@@ -38,6 +26,10 @@ export default function App() {
 
   const handleChangeNumCat = (value: number[]) => {
     setNumCat(value)
+  }
+
+  const handleChangePosition = (value: any) => {
+    setBooleanPosition(value)
   }
 
   const switchLang = (value: any) => {
@@ -49,12 +41,12 @@ export default function App() {
       <MapView
         style={styles.map}
         provider={PROVIDER_GOOGLE}
-        initialRegion={iniPosition}
-        region={vodila.position}
+        initialRegion={booleanPosition ? vodila.position : iniPosition}
+        region={booleanPosition ? vodila.position : iniPosition}
       >
         <AllCars onChange={handleChangeVodila} lang={lang} numCat={numCat} />
       </MapView>
-      <Upravlenie onChange={handleChangeVodila} vodilaChange={vodila} lang={lang} onNumCat={handleChangeNumCat} />
+      <Upravlenie onChange={handleChangeVodila} vodilaChange={vodila} lang={lang} onNumCat={handleChangeNumCat} onIniPosition={handleChangePosition} />
       <ChangeLang onChange={switchLang} />
     </View>
   );
