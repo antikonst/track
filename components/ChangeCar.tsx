@@ -19,7 +19,7 @@ const cat: any = {
   2: require("../assets/pass.png"),
   3: require("../assets/spec.png")
 }
-
+//размеры экрана
 const { width, height } = Dimensions.get("window");
 
 export const Upravlenie: React.FC<Props> = ({ onChange, vodilaChange, lang, onNumCat, onIniPosition }) => {
